@@ -159,10 +159,10 @@ ds.charts.nvd3 =
       var options = item.options || {}
       var transform = item.transform || 'sum'
       var series = query.chart_data('nvd3')
-        /* var showLegend = options.showLegend !== false
-           if (list_of_series.length > self.DEFAULT_AUTO_HIDE_LEGEND_THRESHOLD) {
-           showLegend = false
-           } */
+        var showLegend = options.showLegend !== false
+        if (series.length > self.DEFAULT_AUTO_HIDE_LEGEND_THRESHOLD) {
+            showLegend = false
+        }
         var data = series.map(function(series) {
             return {
                 label: series.key,
@@ -179,6 +179,8 @@ ds.charts.nvd3 =
                x: function(d) { return d.key },
                y: function(d) { return d.y }
                }) */
+                .showLegend(showLegend)
+                .x(function(d) { return d.label || d.key })
                 .color(ds.charts.util._color_function(options.palette || ds.charts.DEFAULT_PALETTE))
                 .labelType(options.labelType || "percent")
                 .donut(options.donut !== false)
