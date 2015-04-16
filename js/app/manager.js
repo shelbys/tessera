@@ -190,7 +190,8 @@ ds.manager =
             // Load the queries
             dashboard.definition.load_all({
               from: context.from,
-              until: context.until
+              until: context.until,
+              base_url: dashboard.graphite_url
             }, !holder.raw_data_required)
           }
 
@@ -311,7 +312,8 @@ ds.manager =
       if (context) {
         dashboard.load_all({
           from: context.from,
-          until: context.until
+          until: context.until,
+          base_url: dashboard.graphite_url
         })
       } else {
         dashboard.load_all()

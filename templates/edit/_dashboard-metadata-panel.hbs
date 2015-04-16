@@ -51,15 +51,25 @@
   <!-- Column 2 -->
   <div class="col-md-7">
     <h4>Description</h4>
-    <div class="ds-editable"
-         id="ds-info-panel-edit-description"
-         data-type="textarea"
-         data-rows="9"
-         data-showbuttons="bottom"
-         data-inputclass="ds-dashboard-description"
-         style="text-align:top;">
-      {{markdown description}}
-    </div>
+
+    <table class="table-condensed">
+      <tbody>
+        <tr>
+          <div class="ds-editable"
+            id="ds-info-panel-edit-description"
+            data-type="textarea"
+            data-rows="9"
+            data-showbuttons="bottom"
+            data-inputclass="ds-dashboard-description"
+            style="text-align:top;">
+            {{markdown description}}
+          </div>
+        </tr>
+        <tr>
+          <th>Graphite URL</th><td class="ds-editable" id="ds-info-panel-edit-graphite-url" data-type="text">{{graphite_url}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

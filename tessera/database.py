@@ -14,6 +14,7 @@ class DashboardRecord(db.Model):
     category      = db.Column(db.String(40))
     summary       = db.Column(db.String(60))
     description   = db.Column(db.Text)
+    graphite_url  = db.Column(db.String(200))
     creation_date = db.Column(db.DateTime)
     imported_from = db.Column(db.String(200))
     last_modified_date = db.Column(db.DateTime)
@@ -32,6 +33,7 @@ class DashboardRecord(db.Model):
                  category=None,
                  summary=None,
                  description=None,
+                 graphite_url=None,
                  creation_date=None,
                  last_modified_date=None,
                  imported_from=None,
@@ -45,6 +47,7 @@ class DashboardRecord(db.Model):
         self.last_modified_date = last_modified_date or now
         self.definition = definition
         self.description = description
+        self.graphite_url = graphite_url
         self.imported_from = imported_from
         self.tags = tags or []
 
@@ -55,6 +58,7 @@ class DashboardRecord(db.Model):
             'category'      : self.category,
             'summary'       : self.summary,
             'description'   : self.description,
+            'graphite_url'   : self.graphite_url,
             'creation_date' : self.creation_date.isoformat() + 'Z',
             'last_modified_date' : self.last_modified_date.isoformat() + 'Z',
             'imported_from' : self.imported_from,
@@ -65,7 +69,7 @@ class DashboardRecord(db.Model):
         return data
 
     def merge_from_json(self, d):
-        for attr in ['title', 'category', 'description', 'summary', 'imported_from']:
+        for attr in ['title', 'category', 'description', 'graphite_url', 'summary', 'imported_from']:
             if hasattr(self, attr):
                 setattr(self, attr, d[attr])
         if 'tags' in d:
@@ -80,6 +84,7 @@ class DashboardRecord(db.Model):
                                category      = data.get('category',      None),
                                summary       = data.get('summary',       None),
                                description   = data.get('description',   None),
+                               graphite_url  = data.get('graphite_url',   None),
                                tags          = tags,
                                imported_from = data.get('imported_from', None))
 

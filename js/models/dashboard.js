@@ -17,6 +17,7 @@ ds.models.dashboard = function(data) {
                        .property('expanded_summary')
                        .property('description')
                        .property('expanded_description')
+                       .property('graphite_url')
                        .property('definition', {
                          update: function() {
                            self.update_index()
@@ -83,6 +84,7 @@ ds.models.dashboard = function(data) {
         .set_category(data.category)
         .set_summary(data.summary)
         .set_description(data.description)
+        .set_graphite_url(data.graphite_url)
         .set_creation_date(data.creation_date)
         .set_last_modified_date(data.last_modified_date)
         .set_imported_from(data.imported_from)
@@ -165,6 +167,7 @@ ds.models.dashboard = function(data) {
      category: self.category,
      summary: self.summary,
      description: self.description,
+     graphite_url: self.graphite_url,
      creation_date: self.creation_date,
      last_modified_date: self.last_modified_date,
      imported_from: self.imported_from,

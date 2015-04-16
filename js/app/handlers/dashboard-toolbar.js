@@ -66,6 +66,14 @@ ds.app.add_mode_handler('edit', {
       ds.manager.update(ds.manager.current.dashboard)
     })
 
+    /** Graphite URL */
+    $("#ds-info-panel-edit-graphite-url").editable({
+      unsavedclass: null,
+      success: function(ignore, newValue) {
+        ds.manager.current.dashboard.graphite_url = newValue
+        ds.manager.update(ds.manager.current.dashboard)
+      }
+    })
   },
   exit: function() {
     $('#ds-edit-info-button').removeClass('active')
