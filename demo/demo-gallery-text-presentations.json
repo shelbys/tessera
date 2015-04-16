@@ -1,0 +1,496 @@
+{
+  "category": "Demo", 
+  "definition": {
+    "item_id": "d1", 
+    "item_type": "dashboard_definition", 
+    "queries": {
+      "comparison": {
+        "name": "comparison", 
+        "targets": [
+          "aliasByNode(group(randomWalkFunction(\"today\"), randomWalkFunction(\"yesterday\")), 0)"
+        ]
+      }, 
+      "multiple": {
+        "name": "multiple", 
+        "targets": [
+          "absolute(group(randomWalkFunction(\"a\"),randomWalkFunction(\"b\"),randomWalkFunction(\"c\")))"
+        ]
+      }, 
+      "percentages": {
+        "name": "percentages", 
+        "targets": [
+          "group(alias(absolute(randomWalkFunction(\"query0\")), \"A\"),\n      alias(absolute(randomWalkFunction(\"query1\")), \"B\"),\n      alias(absolute(randomWalkFunction(\"query2\")), \"C\"),\n      alias(absolute(randomWalkFunction(\"query2\")), \"D\"))"
+        ]
+      }, 
+      "positive": {
+        "name": "positive", 
+        "targets": [
+          "aliasByNode(absolute(group(randomWalkFunction(\"system\"),randomWalkFunction(\"user\"),randomWalkFunction(\"wait\"), randomWalkFunction(\"io\"))), 0)"
+        ]
+      }, 
+      "single1": {
+        "name": "single1", 
+        "targets": [
+          "absolute(randomWalkFunction(\"thing1\"))"
+        ]
+      }, 
+      "comp2": {
+        "name": "comp2", 
+        "targets": [
+          "scale(absolute(randomWalkFunction(\"comp2\")), 1000)"
+        ]
+      }, 
+      "comp1": {
+        "name": "comp1", 
+        "targets": [
+          "scale(absolute(randomWalkFunction(\"comp1\")), 1000)"
+        ]
+      }, 
+      "collector_shifted": {
+        "name": "collector_shifted", 
+        "targets": [
+          "timeShift(collector_time_ms, \"1d\")"
+        ]
+      }, 
+      "single2": {
+        "name": "single2", 
+        "targets": [
+          "randomWalkFunction(\"thing2\")"
+        ]
+      }, 
+      "positive2": {
+        "name": "positive2", 
+        "targets": [
+          "aliasByNode(absolute(group(randomWalkFunction(\"cpu1\"),randomWalkFunction(\"cpu2\"),randomWalkFunction(\"cpu3\"), randomWalkFunction(\"cpu4\"), randomWalkFunction(\"cpu5\"), randomWalkFunction(\"cpu6\"), randomWalkFunction(\"cpu7\"), randomWalkFunction(\"cpu8\"))), 0)"
+        ]
+      }, 
+      "collector": {
+        "name": "collector", 
+        "targets": [
+          "collector_time_ms"
+        ]
+      }
+    }, 
+    "href": "/api/dashboard/4/definition", 
+    "items": [
+      {
+        "item_id": "d37", 
+        "item_type": "section", 
+        "layout": "fixed", 
+        "items": [
+          {
+            "item_id": "d39", 
+            "item_type": "heading", 
+            "level": 1, 
+            "description": "Various ways of calling out data", 
+            "text": "Text Presentations"
+          }, 
+          {
+            "item_id": "d40", 
+            "item_type": "separator"
+          }, 
+          {
+            "item_id": "d41", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d42", 
+                "item_type": "cell", 
+                "span": 3, 
+                "items": [
+                  {
+                    "item_id": "d43", 
+                    "item_type": "markdown", 
+                    "text": "### Single Stats\nA single stat presentation shows one of the summation values that are calculated for each data series, along with a title and optionally units. "
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d44", 
+                "item_type": "cell", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Sum, Left Justified", 
+                    "transform": "sum", 
+                    "item_type": "singlestat", 
+                    "item_id": "d45", 
+                    "query": "single1"
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d46", 
+                "item_type": "cell", 
+                "align": "right", 
+                "span": 2, 
+                "items": [
+                  {
+                    "units": "units", 
+                    "title": "Min, Right Justified", 
+                    "format": ",.3f", 
+                    "transform": "min", 
+                    "item_type": "singlestat", 
+                    "item_id": "d47", 
+                    "query": "single1"
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d48", 
+                "item_type": "cell", 
+                "align": "center", 
+                "span": 2, 
+                "items": [
+                  {
+                    "units": "/min", 
+                    "title": "Max, Centered", 
+                    "format": ",.0f", 
+                    "transform": "max", 
+                    "item_type": "singlestat", 
+                    "item_id": "d49", 
+                    "query": "single1"
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "item_id": "d134", 
+            "item_type": "separator"
+          }, 
+          {
+            "item_id": "d50", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d51", 
+                "item_type": "cell", 
+                "span": 3, 
+                "items": [
+                  {
+                    "item_id": "d52", 
+                    "item_type": "markdown", 
+                    "text": "### Jumbotron Single Stat\nA larger single stat suitable for big displays"
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d53", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "units": "/sec", 
+                    "title": "Hey this number is important", 
+                    "format": ",.2f", 
+                    "transform": "sum", 
+                    "height": 3, 
+                    "item_type": "jumbotron_singlestat", 
+                    "item_id": "d54", 
+                    "query": "single1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }, 
+      {
+        "item_id": "d131", 
+        "item_type": "section", 
+        "title": "Tables", 
+        "layout": "fixed", 
+        "items": [
+          {
+            "item_id": "d149", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d150", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "item_id": "d151", 
+                    "item_type": "markdown", 
+                    "text": "### Summation Tables\nEvery data series returned from graphite has its min, max, sum, and mean values calculated. A summation table shows one or more of those values for each data series in the query."
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d152", 
+                "item_type": "cell", 
+                "span": 7, 
+                "items": [
+                  {
+                    "sortable": false, 
+                    "format": ",.3s", 
+                    "title": "No stripes", 
+                    "item_type": "summation_table", 
+                    "item_id": "d61", 
+                    "query": "positive", 
+                    "striped": false
+                  }, 
+                  {
+                    "sortable": false, 
+                    "format": ",.3f", 
+                    "title": "With stripes", 
+                    "item_type": "summation_table", 
+                    "item_id": "d153", 
+                    "query": "positive", 
+                    "striped": true
+                  }, 
+                  {
+                    "sortable": true, 
+                    "format": ",.3f", 
+                    "title": "Sortable", 
+                    "item_type": "summation_table", 
+                    "item_id": "d64", 
+                    "query": "positive", 
+                    "striped": true
+                  }, 
+                  {
+                    "sortable": false, 
+                    "format": ",.3s", 
+                    "title": "With series color swatch", 
+                    "item_type": "summation_table", 
+                    "item_id": "d63", 
+                    "query": "positive", 
+                    "striped": true, 
+                    "show_color": true
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "item_id": "d135", 
+            "item_type": "separator"
+          }, 
+          {
+            "item_id": "d156", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d157", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "item_id": "d158", 
+                    "item_type": "markdown", 
+                    "text": "### Timeshifted Summation Tables\n\nTake any query and compare it to the past.\n\nWhen evaluated, the item will take the source query and wrap it with Graphite's `timeShift()` function.\n\nThis demo uses the `collector_time_ms` metric from carbon, because the `randomWalk()` generator function doesn't work with `timeShift()`. "
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d159", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "sortable": false, 
+                    "format": ",.3s", 
+                    "shift": "1d", 
+                    "title": "Time Shift 1 Day", 
+                    "item_type": "timeshift_summation_table", 
+                    "item_id": "d160", 
+                    "query": "collector", 
+                    "striped": true
+                  }, 
+                  {
+                    "sortable": true, 
+                    "format": ",.3s", 
+                    "shift": "1w", 
+                    "title": "Time Shift 1 Week + Sortable", 
+                    "item_type": "timeshift_summation_table", 
+                    "item_id": "d66", 
+                    "query": "collector", 
+                    "striped": true
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "item_id": "d145", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d146", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "item_id": "d147", 
+                    "item_type": "markdown", 
+                    "text": "### Comparison Summation Tables\n\nLike the timeshift summation table, this table compares the\ndifference between two queries. Instead of time-shifting one\nquery, however, this version comparse any two arbitrary queries.\n"
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d148", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "query_other": "comp2", 
+                    "sortable": false, 
+                    "format": ",.3s", 
+                    "item_type": "comparison_summation_table", 
+                    "item_id": "d166", 
+                    "query": "comp1", 
+                    "striped": true
+                  }, 
+                  {
+                    "query_other": "comp2", 
+                    "sortable": false, 
+                    "format": ",.3s", 
+                    "item_type": "comparison_summation_table", 
+                    "item_id": "d65", 
+                    "query": "comp1", 
+                    "striped": false
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "item_id": "d136", 
+            "item_type": "separator"
+          }, 
+          {
+            "item_id": "d137", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d138", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "item_id": "d140", 
+                    "item_type": "markdown", 
+                    "text": "### Percentage Table\n\nSimply displays the sum of each series in a query as a percentage of the total. "
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d139", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "format": "%", 
+                    "title": "Percentages Only", 
+                    "transform": "sum", 
+                    "item_type": "percentage_table", 
+                    "item_id": "d141", 
+                    "query": "percentages"
+                  }, 
+                  {
+                    "format": "%", 
+                    "title": "Including sums", 
+                    "transform": "sum", 
+                    "item_type": "percentage_table", 
+                    "include_sums": true, 
+                    "item_id": "d70", 
+                    "query": "percentages", 
+                    "striped": true
+                  }, 
+                  {
+                    "format": "%", 
+                    "title": "Including sums, inverted axes", 
+                    "transform": "sum", 
+                    "invert_axes": true, 
+                    "item_type": "percentage_table", 
+                    "include_sums": true, 
+                    "item_id": "d69", 
+                    "query": "percentages", 
+                    "striped": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }, 
+      {
+        "item_id": "d201", 
+        "item_type": "section", 
+        "title": "Other", 
+        "layout": "fixed", 
+        "items": [
+          {
+            "item_id": "d236", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d237", 
+                "item_type": "cell", 
+                "span": 3, 
+                "items": [
+                  {
+                    "item_id": "d238", 
+                    "item_type": "markdown", 
+                    "text": "### Markdown Text\nFor the inclusion of explanatory text and links. \n\nMarkdown items are also processed with the [handlebarsjs](http://handlebarsjs.com/) template engine."
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d239", 
+                "item_type": "cell", 
+                "span": 4, 
+                "items": [
+                  {
+                    "item_id": "d240", 
+                    "item_type": "markdown", 
+                    "text": "\n# Heading 1\n[Markdown](https://daringfireball.net/projects/markdown/) is a simple plain text format for generating markup. It is rendered in a dashboard element by [marked](https://github.com/chjj/marked). \n## Heading 2\n* List \n* items \n* are supported \n## Heading 3\n`/* As is code */`, etc...\n\n```\n{\n\"code\" : \"block\"\n}\n```"
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d241", 
+                "item_type": "cell", 
+                "span": 5, 
+                "items": [
+                  {
+                    "item_id": "d242", 
+                    "item_type": "markdown", 
+                    "raw": true, 
+                    "text": "\n# Heading 1\n[Markdown](https://daringfireball.net/projects/markdown/) is a simple plain text format for generating markup. It is rendered in a dashboard element by [marked](https://github.com/chjj/marked). \n## Heading 2\n* List \n* items \n* are supported \n## Heading 3\n`/* As is code */`, etc...\n\n```\n{\n\"code\" : \"block\"\n}\n```"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }, 
+  "view_href": "/dashboards/4/gallery-text-presentations", 
+  "description": "", 
+  "tags": [
+    {
+      "count": 4, 
+      "bgcolor": "green", 
+      "id": 3, 
+      "name": "featured"
+    }, 
+    {
+      "count": 4, 
+      "bgcolor": "#ddd", 
+      "id": 4, 
+      "fgcolor": "#333", 
+      "name": "demo"
+    }
+  ], 
+  "title": "Gallery - Text Presentations", 
+  "summary": "Non-graphical presentations of data. ", 
+  "definition_href": "/api/dashboard/4/definition", 
+  "href": "/api/dashboard/4", 
+  "id": 4, 
+  "imported_from": null
+}

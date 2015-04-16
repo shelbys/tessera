@@ -1,0 +1,347 @@
+{
+  "category": "Demo", 
+  "definition": {
+    "item_id": "d1", 
+    "item_type": "dashboard_definition", 
+    "queries": {
+      "single2": {
+        "name": "single2", 
+        "targets": [
+          "randomWalkFunction(\"thing2\")"
+        ]
+      }, 
+      "single1": {
+        "name": "single1", 
+        "targets": [
+          "absolute(randomWalkFunction(\"thing1\"))"
+        ]
+      }
+    }, 
+    "href": "/api/dashboard/3/definition", 
+    "items": [
+      {
+        "item_id": "d130", 
+        "item_type": "section", 
+        "layout": "fixed", 
+        "items": [
+          {
+            "item_id": "d171", 
+            "item_type": "heading", 
+            "level": 1, 
+            "text": "Presentation Options"
+          }, 
+          {
+            "item_id": "d172", 
+            "item_type": "markdown", 
+            "text": "A variety of visual styles can be applied to structural elements (sections, rows, and cells) for visual emphasis."
+          }, 
+          {
+            "item_id": "d173", 
+            "item_type": "separator"
+          }, 
+          {
+            "item_id": "d174", 
+            "item_type": "row", 
+            "items": [
+              {
+                "style": "well", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "well", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d176", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d175"
+              }, 
+              {
+                "style": "alert_neutral", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "NEUTRAL", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d178", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d177"
+              }, 
+              {
+                "style": "alert_info", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Info Alert", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d180", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d179"
+              }, 
+              {
+                "style": "alert_success", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Success Alert", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d182", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d181"
+              }, 
+              {
+                "style": "alert_warning", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Warning Alert", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d184", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d183"
+              }, 
+              {
+                "style": "alert_danger", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Danger Alert", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d186", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d185"
+              }
+            ]
+          }, 
+          {
+            "item_id": "d187", 
+            "item_type": "row", 
+            "items": [
+              {
+                "style": "callout_neutral", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Neutral Callout", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d189", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "offset": "2", 
+                "item_id": "d188"
+              }, 
+              {
+                "style": "callout_info", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Information Callout", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d191", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d190"
+              }, 
+              {
+                "style": "callout_success", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Success Callout", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d193", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d192"
+              }, 
+              {
+                "style": "callout_warning", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Warning Callout", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d195", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d194"
+              }, 
+              {
+                "style": "callout_danger", 
+                "span": 2, 
+                "items": [
+                  {
+                    "format": ",.3f", 
+                    "title": "Danger Callout", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d197", 
+                    "query": "single1"
+                  }
+                ], 
+                "align": "center", 
+                "item_type": "cell", 
+                "item_id": "d196"
+              }
+            ]
+          }, 
+          {
+            "item_id": "d198", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d199", 
+                "item_type": "cell", 
+                "offset": "8", 
+                "span": 2, 
+                "items": [
+                  {
+                    "units": "/sec", 
+                    "title": "Warning Threshold", 
+                    "css_class": "ds-warning bs-callout bs-callout-warning", 
+                    "format": ",.2f", 
+                    "transform": "mean", 
+                    "item_type": "singlestat", 
+                    "item_id": "d200", 
+                    "query": "single2"
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d203", 
+                "item_type": "cell", 
+                "span": 2, 
+                "items": [
+                  {
+                    "units": "ms", 
+                    "title": "Danger Threshold", 
+                    "css_class": "ds-danger bs-callout bs-callout-danger", 
+                    "format": ",.2f", 
+                    "transform": "max", 
+                    "item_type": "singlestat", 
+                    "item_id": "d206", 
+                    "query": "single2"
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "item_id": "d207", 
+            "item_type": "row", 
+            "items": [
+              {
+                "item_id": "d208", 
+                "item_type": "cell", 
+                "span": 3, 
+                "items": [
+                  {
+                    "item_id": "d209", 
+                    "item_type": "markdown", 
+                    "text": "Jumbotron singlestats with emphasis can get a lot of attention."
+                  }
+                ]
+              }, 
+              {
+                "item_id": "d210", 
+                "item_type": "cell", 
+                "style": "callout_danger", 
+                "span": 5, 
+                "items": [
+                  {
+                    "units": "/sec", 
+                    "title": "Hey, this looks really bad...", 
+                    "css_class": "ds-danger", 
+                    "format": ",.2f", 
+                    "transform": "sum", 
+                    "height": "3", 
+                    "item_type": "jumbotron_singlestat", 
+                    "item_id": "d211", 
+                    "query": "single1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }, 
+  "view_href": "/dashboards/3/gallery-presentation-options", 
+  "description": "", 
+  "tags": [
+    {
+      "count": 4, 
+      "bgcolor": "green", 
+      "id": 3, 
+      "name": "featured"
+    }, 
+    {
+      "count": 4, 
+      "bgcolor": "#ddd", 
+      "id": 4, 
+      "fgcolor": "#333", 
+      "name": "demo"
+    }
+  ], 
+  "title": "Gallery - Presentation Options", 
+  "summary": "", 
+  "definition_href": "/api/dashboard/3/definition", 
+  "href": "/api/dashboard/3", 
+  "id": 3, 
+  "imported_from": null
+}

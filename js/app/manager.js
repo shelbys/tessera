@@ -95,21 +95,6 @@ ds.manager =
     }
 
     /**
-     * Recurse through the presentation tree, giving each dashboard
-     * item an element ID, and checking to see if we have any
-     * components that require the raw data queries to be made.
-     */
-    self._prep_items = function(dashboard, holder, interactive) {
-      dashboard.visit(function(item) {
-        if (!item.item_type)
-          return
-        if (item.requires_data) {
-          holder.raw_data_required = true
-        }
-      })
-    }
-
-    /**
      * Set up us the API call.
      */
     self._prep_url = function(base_url, options) {
@@ -140,6 +125,8 @@ ds.manager =
      */
     self.load = function(url, element, options_) {
       log.debug('load(): ' + url)
+      window.performance.clearMarks()
+
       if (self.current && self.current.dashboard) {
         self.current.dashboard.cleanup()
       }
@@ -156,24 +143,17 @@ ds.manager =
         var dashboard = ds.models.dashboard(data)
         holder.dashboard = dashboard
 
-        if (data.preferences.renderer && ds.charts[data.preferences.renderer]) {
-          ds.charts.provider = ds.charts[data.preferences.renderer]
+        if (data.preferences.renderer) {
+          ds.charts.provider = ds.charts.registry.get(data.preferences.renderer)
         }
 
-          ds.event.fire(self, ds.app.Event.DASHBOARD_LOADED, dashboard)
+        ds.event.fire(self, ds.app.Event.DASHBOARD_LOADED, dashboard)
 
-          dashboard.render_templates(context.variables)
+        dashboard.render_templates(context.variables)
 
-          var interactive = data.preferences.interactive
-          if (context.interactive != undefined) {
-            interactive = context.interactive
-          }
-          holder.raw_data_required = interactive
-          ds.charts.interactive = interactive
-
-          // Build a map from the presentation elements to their
-          // model objects.
-          self._prep_items(dashboard, holder, interactive)
+        ds.charts.interactive = (context.interactive != undefined)
+                              ? context.interactive
+                              : ds.charts.provider.is_interactive
 
           // Render the dashboard
           $(element).html(dashboard.definition.render())
@@ -192,7 +172,7 @@ ds.manager =
               from: context.from,
               until: context.until,
               base_url: dashboard.graphite_url
-            }, !holder.raw_data_required)
+            })
           }
 
           ds.event.fire(self, ds.app.Event.DASHBOARD_RENDERED, dashboard)
@@ -285,15 +265,14 @@ ds.manager =
        */
       if (set_location) {
         var url = URI(window.location)
-        var path = url.path()
         if (target.item_type != 'dashboard_definition') {
-          path = path + '/' + target.item_id
+          url.segment(target.item_id.toString())
         }
-        path = path + '/transform/' + transform.name
+        url.segment('transform').segment(transform.name)
         window.history.pushState({ url:self.current.url,
                                    element:self.current.element,
                                    transform:transform.toJSON(),
-                                   target:target.toJSON() }, '', url.path(path).href())
+                                   target:target.toJSON() }, '', url.href())
       }
 
       /**
@@ -438,6 +417,7 @@ ds.manager =
         bootbox.dialog({
             message: "Are you really sure you want to delete this dashboard? Deletion is irrevocable.",
             title: "Confirm dashboard delete",
+            backdrop: false,
             buttons: {
                 cancel: {
                     label: "Cancel",
