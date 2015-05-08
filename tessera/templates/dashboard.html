@@ -125,7 +125,7 @@
 
       function scrollAuto() {
         scrollElement.stop(true, false);
-        if (!scrollStopped && refreshInterval != 0 && ['display', 'standard'].indexOf(ds.app.current_mode) > -1) {
+        if (!scrollStopped && refreshInterval != 0 && 'display' === ds.app.current_mode) {
           var scrollTarget = (($(document).scrollTop() < $(document).height() / 2) ? $(document).height() : 0);
           scrollElement.animate({ scrollTop: scrollTarget }, scrollInterval);
         }
