@@ -48,11 +48,14 @@
               </li>
             </ul>
             <script>
-              ds.manager.onRangeChanged(function(data) {
-                var description = ds.manager.getRangeDescription(data.from);
+              function updateRangeIndicator(refreshInterval) {
+                var description = ds.manager.getRangeDescription(refreshInterval);
                 if ( description ) {
                   $("a.ds-fullscreen-range-indicator").text(description);
                 }
+              }
+              ds.manager.onRangeChanged(function(data) {
+                updateRangeIndicator(data.from);
               });
             </script>
           </div>
@@ -111,6 +114,7 @@
 
     var refreshInterval = {{ctx.get_int('refresh', config['DEFAULT_REFRESH_INTERVAL'])}}
     if (refreshInterval != 0) {
+      updateRangeIndicator(refreshInterval);
       ds.manager.set_refresh_interval(refreshInterval);
       $("ul.ds-refresh-menu li[data-ds-interval]").removeClass('active');
       $("ul.ds-refresh-menu li[data-ds-interval=" + refreshInterval + "]").addClass('active');
