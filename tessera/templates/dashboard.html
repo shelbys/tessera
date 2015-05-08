@@ -114,8 +114,8 @@
 
     var refreshInterval = {{ctx.get_int('refresh', config['DEFAULT_REFRESH_INTERVAL'])}}
     if (refreshInterval != 0) {
-      updateRangeIndicator(refreshInterval);
       ds.manager.set_refresh_interval(refreshInterval);
+      updateRangeIndicator(refreshInterval);
       $("ul.ds-refresh-menu li[data-ds-interval]").removeClass('active');
       $("ul.ds-refresh-menu li[data-ds-interval=" + refreshInterval + "]").addClass('active');
 
@@ -125,7 +125,7 @@
 
       function scrollAuto() {
         scrollElement.stop(true, false);
-        if (!scrollStopped && refreshInterval != 0) {
+        if (!scrollStopped && refreshInterval != 0 && ['display', 'standard'].indexOf(ds.app.current_mode) > -1) {
           var scrollTarget = (($(document).scrollTop() < $(document).height() / 2) ? $(document).height() : 0);
           scrollElement.animate({ scrollTop: scrollTarget }, scrollInterval);
         }
