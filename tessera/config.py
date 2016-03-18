@@ -108,6 +108,7 @@ DEFAULT_PROPSHEET_AUTOCLOSE_SECONDS = 3
 DASHBOARD_RANGE_PICKER = [
       ('1h',  '-1h'),
       ('3h',  '-3h'),
+      ('6h',  '-6h'),
       ('12h', '-12h'),
       ('1d',  '-1d'),
       ('3d',  '-3d'),
