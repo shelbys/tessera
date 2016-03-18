@@ -14,7 +14,7 @@ SECRET_KEY                 = 'REPLACE ME'
 # loaded with no from or until parameters in the URL, this will be
 # used to select the time range to display.
 #
-DEFAULT_FROM_TIME          = '-3h'
+DEFAULT_FROM_TIME          = '-1h'
 
 #
 # The default UI color theme. Valid values are 'light', 'dark',
@@ -49,7 +49,7 @@ SERVER_ADDRESS             = '0.0.0.0'
 #
 # TCP port for the backend server to listen on.
 #
-SERVER_PORT                = 5000
+SERVER_PORT                = 8888
 
 #
 # URL to the graphite server to pull data from. This is overridable by
@@ -135,4 +135,4 @@ DASHBOARD_REFRESH_INTERVALS = [
 # The default refresh time to automatically reload dashboards, in
 # seconds. This is overridable by user sessions.
 #
-DEFAULT_REFRESH_INTERVAL = 60
+DEFAULT_REFRESH_INTERVAL = 300
